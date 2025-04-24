@@ -477,7 +477,7 @@ nav ul li a {
   transition: all 0.3s ease;
 }
 
-/* Mobile Optimierung für Download-Section */
+/* Mobile Optimierung */
 @media (max-width: 600px) {
   #download {
     padding: 32px 8px;
@@ -497,6 +497,36 @@ nav ul li a {
     border-radius: 26px;
     width: 90vw;
     max-width: 320px;
+  }
+
+  /* Hero Section mobile */
+  #hero {
+    padding: 60px 5px;
+  }
+  #hero .hero-content {
+    padding: 28px 8px 24px 8px;
+    max-width: 98vw;
+    width: 98vw;
+    height: auto;
+    min-height: 320px;
+  }
+  #hero .floating-logo {
+    width: 75px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  #hero h2 {
+    font-size: 1.4rem;
+  }
+  #hero p {
+    font-size: 1rem;
+    max-width: 95vw;
+  }
+  #hero .subtext {
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    max-width: 95vw;
   }
 
   /* Navigation mobile adjustments */
