@@ -1,0 +1,456 @@
+/* Google Fonts: Nunito */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+/* Verwenden von Nunito als Schriftart */
+body {
+  font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  position: relative;
+  min-height: 100vh;
+  z-index: 0;
+}
+  
+  /* Hintergrundbild mit Abdunkeln und Unschärfe, ohne den Inhalt zu beeinflussen */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('assets/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    filter: blur(2px) brightness(0.7);
+    pointer-events: none;
+  }
+  
+  /* Hero Section */
+  #hero {
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #hero .hero-content {
+    background: rgba(0, 0, 0, 0.946);
+    border-radius: 24px;
+    box-shadow: 0 14px 48px rgba(0,0,0,0.7), 0 3px 12px rgba(0,0,0,0.22), 0 0 10px 2px rgba(255,255,255,0.1);
+    padding: 56px 64px 48px 64px;
+    max-width: 900px;
+    margin: 0 auto;
+    border: 4px solid #000;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    height: 480px;
+    width: 320px;
+    /* Animation nur auf die Form, nicht auf den Inhalt */
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Wrapper for shape transform */
+  #hero .hero-content .shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    border: 4px solid #000;
+    background: rgba(0, 0, 0, 0.946);
+    box-shadow: 0 14px 48px rgba(0,0,0,0.7), 0 3px 12px rgba(0,0,0,0.22), 0 0 10px 2px rgba(255,255,255,0.1);
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.5s ease;
+    animation: loadShapeTransition 1s ease forwards;
+    z-index: 0;
+  }
+  
+  /* Apply transform only to the shape on hover, not the content */
+  #hero .hero-content:hover .shape {
+    transform: scaleX(1.4) scaleY(0.7);
+    border-color: #3B77E9;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  #hero .hero-content > *:not(.shape) {
+    position: relative;
+    z-index: 1;
+  }
+  
+  @keyframes loadShapeTransition {
+    0% {
+      /* Tablet-Form: breiter, flacher, andere Farbe */
+      transform: scaleX(1.4) scaleY(0.7);
+      border-color: #3B77E9;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    100% {
+      /* Aktuelle Form */
+      transform: scaleX(1) scaleY(1);
+      border-color: #000;
+      background-color: rgba(0, 0, 0, 0.946);
+    }
+  }
+  
+  #hero .floating-logo {
+    width: 120px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    animation: float 4s ease-in-out infinite;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7);
+    filter: drop-shadow(0 0 8px white);
+    border-radius: 16px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  
+  #hero .floating-logo:hover {
+    box-shadow: 0 0 25px 8px rgba(59, 119, 233, 0.9);
+    border-color: #3B77E9;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  
+  #hero h2 {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  }
+  
+  #hero p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    max-width: 480px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+  }
+  
+  #hero .subtext {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  
+/* Abstand über dem Download-Button im Hero vergrößern */
+#hero .button {
+    background-color: #3B77E9;
+    color: white;
+    padding: 14px 36px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 6px 12px #3B77E9, inset 0 2px 8px rgba(255,255,255,0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 48px;
+}
+  
+  #hero .button:hover {
+    background-color: #2f5ec4;
+    box-shadow: 0 8px 16px #2f5ec4, inset 0 4px 12px rgba(255,255,255,0.6);
+  }
+  
+  /* Features Section */
+  #features {
+    background-color: #f9f9f9;
+    padding: 60px 20px 80px;
+    max-width: 960px;
+    margin: 0 auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05), inset 0 2px 6px rgba(255,255,255,0.6);
+  }
+  
+  #features h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 40px;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  .feature {
+    background: white;
+    padding: 24px 30px;
+    margin-bottom: 28px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 2px 8px rgba(255,255,255,0.7);
+    transition: box-shadow 0.3s ease, margin 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid transparent;
+  }
+  
+  .feature:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12), inset 0 4px 12px rgba(255,255,255,0.9);
+    margin-bottom: 38px;
+    background-color: #f0f4ff;
+    border-color: #3B77E9;
+  }
+  
+  .feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: #222;
+    font-weight: 600;
+  }
+  
+  .feature p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #555;
+    margin: 0;
+  }
+  
+  /* Why Notedrafts Section */
+  #why-notedrafts {
+    margin-top: 80px;
+    padding: 60px 20px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.15rem;
+    color: #444;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.07), inset 0 2px 6px rgba(255,255,255,0.7);
+    transition: box-shadow 0.3s ease, margin 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid transparent;
+  }
+  
+  #why-notedrafts:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1), inset 0 4px 12px rgba(255,255,255,0.9);
+    margin-top: 90px;
+    background-color: #f0f4ff;
+    border-color: #3B77E9;
+  }
+  
+  #why-notedrafts h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #222;
+    text-align: center;
+  }
+  
+  #why-notedrafts p {
+    margin-bottom: 18px;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  #why-notedrafts ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    color: #555;
+  }
+  
+  #why-notedrafts ul li {
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  
+  /* Download Section */
+  #download {
+    margin-top: 80px;
+    text-align: center;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 60px 20px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #download h2 {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+    color: #222;
+  }
+  
+  #download p {
+    font-size: 1.2rem;
+    margin-bottom: 28px;
+    color: #555;
+  }
+  
+  #download .button {
+    background-color: #0070f3;
+    color: white;
+    padding: 18px 48px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 40px;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(0,112,243,0.5), inset 0 3px 10px rgba(255,255,255,0.5);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, margin 0.3s ease;
+    display: inline-block;
+  }
+  
+  #download .button:hover {
+    background-color: #0059c1;
+    box-shadow: 0 10px 28px rgba(0,89,193,0.7), inset 0 5px 14px rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+  }
+  
+  /* Discord Section */
+  #discord {
+    margin-top: 80px;
+    text-align: center;
+    padding: 60px 20px 80px;
+    background-color: #f5f5f7;
+    border-top: 1px solid #ddd;
+  }
+  
+  #discord h2 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+    color: #222;
+  }
+  
+  #discord p {
+    font-size: 1.15rem;
+    margin-bottom: 24px;
+    color: #555;
+  }
+  
+  #discord .button {
+    background-color: #5865f2;
+    color: white;
+    padding: 14px 40px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 6px 12px rgba(88,101,242,0.5), inset 0 2px 8px rgba(255,255,255,0.5);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, margin 0.3s ease;
+    display: inline-block;
+  }
+  
+  #discord .button:hover {
+    background-color: #4752c4;
+    box-shadow: 0 8px 18px rgba(71,82,196,0.7), inset 0 4px 12px rgba(255,255,255,0.7);
+    margin-bottom: 6px;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 24px 20px;
+    background-color: #222;
+    color: #eee;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  footer a img {
+    height: 28px;
+    cursor: pointer;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+  }
+  
+  footer a img:hover {
+    filter: brightness(0.8) invert(0.8);
+  }
+  
+  /* Navigation */
+  nav {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 18px;
+  }
+  
+  .logo-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #222;
+  }
+  
+  .logo {
+    height: 40px;
+    filter: none;
+  }
+  
+  .site-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #222;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 6px 0;
+    position: relative;
+    transition:
+      color 0.3s ease,
+      border 0.3s ease,
+      background 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  
+nav ul li a:hover,
+nav ul li a:focus {
+    color: #333333;
+    font-weight: 700;
+    border-radius: 10px;
+    background: none;
+    box-shadow: none;
+    border: 2px solid #3B77E9;
+    padding: 6px 0;
+    z-index: 1;
+    outline: none;
+    /* To prevent layout shift, add border by default as transparent: */
+}
+
+nav ul li a {
+    /* Add border to prevent layout shift on hover */
+    border: 2px solid transparent;
+    border-radius: 10px;
+}
+

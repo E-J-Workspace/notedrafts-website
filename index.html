@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notedrafts – App</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/Favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Added style to increase space below the subtext in hero section */
+    #hero .subtext {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo-title">
+        <img src="assets/Notedrafts-Logo.png" alt="Notedrafts Logo" class="logo" />
+        <span class="site-title">Notedrafts</span>
+      </div>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#download">Download</a></li>
+        <li><a href="#discord">Discord</a></li>
+        <li><a href="#support">Support</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-content">
+      <img src="assets/Notedrafts-Logo.png" alt="Notedrafts App" class="floating-logo" />
+      <h2>Notedrafts</h2>
+      <p>Write, sketch, and organize your thoughts – anywhere, anytime.</p>
+      <a href="https://apps.apple.com/us/app/notedrafts/id6743032079" class="button" target="_blank" rel="noopener">Download</a>
+      <p class="subtext">Available for iPadOS and iOS.</p>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <h2>Main Features</h2>
+    <div class="feature">
+      <h3>Notes Directly on PDFs</h3>
+      <p>Edit PDFs directly in the app, highlight and comment on important parts.</p>
+    </div>
+    <div class="feature">
+      <h3>Infinite Canvas</h3>
+      <p>Create mind maps, sketches, and diagrams on an infinite canvas.</p>
+    </div>
+    <div class="feature">
+      <h3>Vertical Notes</h3>
+      <p>Use an endless vertical note area for long lists or continuous writing.</p>
+    </div>
+    <div class="feature">
+      <h3>Customizable Templates</h3>
+      <p>Choose from a variety of templates for daily planners, calendars, and habit trackers.</p>
+    </div>
+  </section>
+
+  <!-- Why Notedrafts Section -->
+  <section id="why-notedrafts">
+    <h2>Why Notedrafts?</h2>
+    <p>Notedrafts offers more than other apps like Goodnotes:</p>
+    <ul>
+      <li>More ink types, including watercolor and chalk.</li>
+      <li>Infinite canvas for large mind maps.</li>
+      <li>No subscriptions – the app is free!</li>
+      <li>Customizable templates you can create to fit your needs.</li>
+    </ul>
+  </section>
+
+  <!-- Download Section -->
+  <section id="download">
+    <h2>Get Notedrafts App</h2>
+    <p>It's free!</p>
+    <a href="https://apps.apple.com/us/app/notedrafts/id6743032079" class="button" target="_blank" rel="noopener">Download</a>
+  </section>
+
+  <!-- Discord Section -->
+  <section id="discord">
+    <h2>Join Our Community!</h2>
+    <p>Join our Discord server for support and community.</p>
+    <a href="https://discord.gg/BaahHCny" class="button" target="_blank" rel="noopener">Join Discord</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <a href="https://discord.gg/BaahHCny" target="_blank" rel="noopener">
+      <img src="assets/discord-logo.png" alt="Discord" />
+    </a>
+    <p>&copy; 2025 Notedrafts. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript for Mobile Menu -->
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('nav ul');
+      navLinks.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
