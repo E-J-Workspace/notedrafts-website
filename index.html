@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/Favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* Added style to increase space below the subtext in hero section */
-    #hero .subtext {
-      margin-top: 2rem;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -74,6 +68,30 @@
     </ul>
   </section>
 
+  <!-- Benutzerbewertungen Section -->
+  <section id="reviews">
+    <h2>What users say:</h2>
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <div class="review-slide">
+          <div class="stars"><img src="assets/5-sterne.png" alt="5 star review"></div>
+          <p>"Fantastic app! Makes my work so much easier."</p>
+          <p><strong>- Anna S.</strong></p>
+        </div>
+        <div class="review-slide">
+          <div class="stars"><img src="assets/5-sterne.png" alt="5 star review"></div>
+          <p>"The infinite canvas is a gamechanger for my notes."</p>
+          <p><strong>- Markus K.</strong></p>
+        </div>
+        <div class="review-slide">
+          <div class="stars"><img src="assets/5-sterne.png" alt="5 star review"></div>
+          <p>"Finally a free app without subscriptions that has everything I need."</p>
+          <p><strong>- Lisa M.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Download Section -->
   <section id="download">
     <h2>Get Notedrafts App</h2>
@@ -90,9 +108,6 @@
 
   <!-- Footer -->
   <footer>
-    <a href="https://discord.gg/BaahHCny" target="_blank" rel="noopener">
-      <img src="assets/discord-logo.png" alt="Discord" />
-    </a>
     <p>&copy; 2025 Notedrafts. All rights reserved.</p>
   </footer>
 
@@ -102,6 +117,38 @@
       const navLinks = document.querySelector('nav ul');
       navLinks.classList.toggle('open');
     }
+  </script>
+
+  <!-- JavaScript for Reviews Carousel -->
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const slideWidth = slides[0].getBoundingClientRect().width;
+
+    // Clone slides for infinite effect
+    slides.forEach(slide => {
+      const clone = slide.cloneNode(true);
+      track.appendChild(clone);
+    });
+
+    let position = 0;
+    const totalSlides = track.children.length;
+
+    function moveCarousel() {
+      position++;
+      if (position >= totalSlides) {
+        track.style.transition = 'none';
+        position = 0;
+        track.style.transform = `translateX(0px)`;
+        // Force reflow to reset transition
+        track.offsetHeight; 
+        track.style.transition = 'transform 0.5s ease-in-out';
+        position++;
+      }
+      track.style.transform = `translateX(-${position * slideWidth}px)`;
+    }
+
+    setInterval(moveCarousel, 3000);
   </script>
 </body>
 </html>
