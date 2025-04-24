@@ -279,11 +279,12 @@ body {
     margin-top: 80px;
     text-align: center;
     background-color: #f0f0f0;
-    border-radius: 10px;
+    border-radius: 28px; /* Abgerundetes Rechteck */
     padding: 60px 20px;
     max-width: 720px;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   }
 
   #download h2 {
@@ -498,3 +499,25 @@ nav ul li a {
       width: 120px;
       height: auto;
     }
+/* Mobile Optimierung für Download-Section */
+@media (max-width: 600px) {
+  #download {
+    padding: 32px 8px;
+    max-width: 98vw;
+    border-radius: 18px;
+  }
+  #download h2 {
+    font-size: 1.4rem;
+  }
+  #download p {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  #download .button {
+    padding: 14px 16px;
+    font-size: 1rem;
+    border-radius: 26px;
+    width: 90vw;
+    max-width: 320px;
+  }
+}
