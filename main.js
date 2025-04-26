@@ -76,6 +76,46 @@ document.querySelectorAll('img').forEach(img => {
 document.addEventListener('DOMContentLoaded', function() {
   const lazyImages = document.querySelectorAll('img[loading="lazy"]');
   
+  // Counter Animation Setup
+  const counterElement = document.querySelector('.counter-value');
+  let hasAnimated = false;
+
+  function animateCounter() {
+    if (hasAnimated) return;
+    
+    const target = parseInt(counterElement.getAttribute('data-target'));
+    const duration = 2000; // Animation duration in milliseconds
+    const step = target / (duration / 16); // Update every 16ms (60fps)
+    let current = 0;
+    
+    function updateCounter() {
+      current += step;
+      if (current >= target) {
+        current = target;
+        counterElement.textContent = target.toLocaleString();
+        hasAnimated = true;
+        return;
+      }
+      counterElement.textContent = Math.floor(current).toLocaleString();
+      requestAnimationFrame(updateCounter);
+    }
+    
+    updateCounter();
+  }
+
+  // Intersection Observer for counter animation
+  if (counterElement) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimated) {
+          animateCounter();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(counterElement);
+  }
+  
   if ('loading' in HTMLImageElement.prototype) {
     lazyImages.forEach(img => {
       img.src = img.dataset.src;

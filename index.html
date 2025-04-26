@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/Favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -42,27 +43,76 @@
   <!-- Features Section -->
   <section id="features" class="features">
     <h2>Main Features</h2>
-    <div class="feature">
-      <h3>Notes Directly on PDFs</h3>
-      <p>Edit PDFs directly in the app, highlight and comment on important parts.</p>
-    </div>
-    <div class="feature">
-      <h3>Infinite Canvas</h3>
-      <p>Create mind maps, sketches, and diagrams on an infinite canvas.</p>
-    </div>
-    <div class="feature">
-      <h3>Vertical Notes</h3>
-      <p>Use an endless vertical note area for long lists or continuous writing.</p>
-    </div>
-    <div class="feature">
-      <h3>Customizable Templates</h3>
-      <p>Choose from a variety of templates for daily planners, calendars, and habit trackers.</p>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-content">
+          <div class="feature-media">
+            <img src="assets/feature-pdf.webp" alt="PDF annotation demonstration" loading="lazy">
+            <!-- Fallback for video option:
+            <video autoplay loop muted playsinline>
+              <source src="assets/feature-pdf.mp4" type="video/mp4">
+            </video> -->
+          </div>
+          <div class="feature-text">
+            <h3>Notes Directly on PDFs</h3>
+            <p>Edit PDFs directly in the app, highlight and comment on important parts. Perfect for students and professionals who need to annotate documents on the go.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-content">
+          <div class="feature-media">
+            <img src="assets/feature-canvas.webp" alt="Infinite canvas demonstration" loading="lazy">
+          </div>
+          <div class="feature-text">
+            <h3>Infinite Canvas</h3>
+            <p>Create mind maps, sketches, and diagrams on an infinite canvas. No boundaries for your creativity - zoom, pan, and organize your thoughts freely.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-content">
+          <div class="feature-media">
+            <img src="assets/feature-vertical.webp" alt="Vertical notes demonstration" loading="lazy">
+          </div>
+          <div class="feature-text">
+            <h3>Vertical Notes</h3>
+            <p>Use an endless vertical note area for long lists or continuous writing. Perfect for meeting notes, journaling, or any continuous thought process.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-content">
+          <div class="feature-media">
+            <img src="assets/feature-templates.webp" alt="Templates demonstration" loading="lazy">
+          </div>
+          <div class="feature-text">
+            <h3>Customizable Templates</h3>
+            <p>Choose from a variety of templates for daily planners, calendars, and habit trackers. Create your own templates to match your unique workflow.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Why Notedrafts Section -->
   <section id="why-notedrafts">
     <h2>Why Notedrafts?</h2>
+    <div class="stats-container">
+      <div class="download-counter">
+        <div class="counter-prefix">More than</div>
+        <div class="counter-value" data-target="50000">0</div>
+        <div class="counter-label">Happy Users</div>
+      </div>
+      <div class="rating-counter">
+        <div class="rating-value">4.9</div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-label">App Store Rating</div>
+      </div>
+    </div>
     <p>Notedrafts offers more than other apps like Goodnotes:</p>
     <ul>
       <li>More ink types, including watercolor and chalk.</li>
