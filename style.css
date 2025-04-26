@@ -168,7 +168,11 @@ nav {
   50% { transform: translateY(-5px); }
 }
 
-/* Mobile Navigation */
+/* Desktop Only */
+.desktop-only {
+  display: block;
+}
+
 @media (max-width: 768px) {
   body {
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
@@ -181,7 +185,7 @@ nav {
     height: calc(100vh + env(safe-area-inset-top) + env(safe-area-inset-bottom));
   }
 
-  nav {
+  .desktop-only {
     display: none;
   }
 
@@ -191,6 +195,10 @@ nav {
 
   #hero .hero-content {
     margin-top: 0;
+  }
+
+  nav {
+    display: none;
   }
 
   .hamburger {
