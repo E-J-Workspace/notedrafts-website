@@ -34,64 +34,63 @@ document.addEventListener('DOMContentLoaded', function() {
 // Reviews Carousel
 document.addEventListener('DOMContentLoaded', function() {
   const track = document.querySelector('.carousel-track');
-  if (!track) return; // Exit if no carousel track found
+  if (!track) return;
   
   const slides = Array.from(track.children);
   const slideWidth = slides[0].getBoundingClientRect().width + 30; // Including gap
   let currentIndex = 0;
   
-  // Clone slides many times for truly infinite scrolling
-  const totalClones = slides.length * 10;
-  for (let i = 0; i < totalClones; i++) {
-    const clone = slides[i % slides.length].cloneNode(true);
-    track.appendChild(clone);
-  }
+  // Clone slides for infinite scroll
+  slides.forEach(slide => {
+    track.appendChild(slide.cloneNode(true));
+  });
+  slides.reverse().forEach(slide => {
+    track.prepend(slide.cloneNode(true));
+  });
+
+  // Initialize position
+  updatePosition();
   
-  // Set initial position
-  updatePosition(false);
-  updateActiveSlide();
-  
-  function updateActiveSlide() {
+  function updatePosition() {
     const allSlides = Array.from(track.children);
-    allSlides.forEach(slide => slide.classList.remove('active'));
-    
-    // Activate all instances of the current slide
-    const currentSlideIndex = currentIndex % slides.length;
-    allSlides.forEach((slide, index) => {
-      if (index % slides.length === currentSlideIndex) {
-        slide.classList.add('active');
-      }
-    });
+    const middleIndex = Math.floor(allSlides.length / 2);
+    track.style.transition = 'transform 0.5s ease-in-out';
+    track.style.transform = `translateX(${-middleIndex * slideWidth + (window.innerWidth - slideWidth) / 2}px)`;
   }
-  
-  function updatePosition(animate = true) {
-    const baseOffset = -(currentIndex * slideWidth);
-    track.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
-    track.style.transform = `translateX(calc(50% + ${baseOffset}px))`;
-  }
-  
+
   // Auto advance carousel
-  function autoAdvance() {
+  function moveCarousel() {
     currentIndex++;
-    updatePosition();
-    updateActiveSlide();
+    const allSlides = Array.from(track.children);
+    const totalWidth = slideWidth * (allSlides.length / 3);
+    
+    track.style.transition = 'transform 0.5s ease-in-out';
+    track.style.transform = `translateX(${-currentIndex * slideWidth + (window.innerWidth - slideWidth) / 2}px)`;
+
+    // Reset position when reaching the end
+    if (currentIndex >= slides.length) {
+      setTimeout(() => {
+        track.style.transition = 'none';
+        currentIndex = 0;
+        track.style.transform = `translateX(${(window.innerWidth - slideWidth) / 2}px)`;
+      }, 500);
+    }
   }
-  
-  let interval = setInterval(autoAdvance, 4000);
-  
+
+  // Start automatic movement
+  let interval = setInterval(moveCarousel, 3000);
+
   // Pause on hover
   track.addEventListener('mouseenter', () => {
-    if (interval) {
-      clearInterval(interval);
-      interval = null;
-    }
+    clearInterval(interval);
   });
-  
+
   track.addEventListener('mouseleave', () => {
-    if (!interval) {
-      interval = setInterval(autoAdvance, 4000);
-    }
+    interval = setInterval(moveCarousel, 3000);
   });
+
+  // Update position on window resize
+  window.addEventListener('resize', updatePosition);
 });
 
 // Image Loading
