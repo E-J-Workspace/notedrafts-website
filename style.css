@@ -279,11 +279,15 @@ nav {
 
 /* Features Section */
 #features {
-  padding: 100px 20px;
+  padding: 80px 20px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 80px auto;
   position: relative;
   overflow: hidden;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
 #features h2 {
@@ -312,23 +316,36 @@ nav {
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .feature {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 24px;
+  background: #ffffff;
+  border-radius: 15px;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(30px);
 }
 
+.feature.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger the animations */
+.feature:nth-child(1) { transition-delay: 0.1s; }
+.feature:nth-child(2) { transition-delay: 0.2s; }
+.feature:nth-child(3) { transition-delay: 0.3s; }
+.feature:nth-child(4) { transition-delay: 0.4s; }
+
 .feature:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.2);
-  border-color: var(--primary-color);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-content {
@@ -339,22 +356,36 @@ nav {
 
 .feature-media {
   width: 100%;
-  aspect-ratio: 16/9;
+  height: 300px;
   overflow: hidden;
-  border-radius: 16px 16px 0 0;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
   position: relative;
 }
 
-.feature-media img,
-.feature-media video {
+.feature-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  display: block;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
-.feature:hover .feature-media img,
-.feature:hover .feature-media video {
+.feature-media::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  z-index: 0;
+}
+
+.feature:hover .feature-media img {
   transform: scale(1.05);
 }
 
@@ -384,15 +415,17 @@ nav {
 @media (max-width: 1024px) {
   .features-grid {
     grid-template-columns: 1fr;
+    max-width: 600px;
     gap: 30px;
-  }
-  
-  #features {
-    padding: 60px 15px;
   }
 }
 
 @media (max-width: 768px) {
+  #features {
+    margin: 30px 15px;
+    border-radius: 18px;
+  }
+  
   #features h2 {
     font-size: 2.2rem;
     margin-bottom: 40px;
@@ -734,49 +767,108 @@ footer a img:hover {
 
 /* Styles for the reviews carousel */
 #reviews {
-  margin-top: 60px;
-  padding: 50px 20px 80px;
-  max-width: 960px;
-  margin: 0 auto;
-  background-color: #f9f9f9;
+  padding: 60px 0;
   text-align: center;
-  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(50, 50, 50, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  margin: 40px 0;
 }
 
 #reviews h2 {
-  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 50px;
+  font-weight: 700;
+  color: #333;
+  position: relative;
+}
+
+#reviews h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 2px;
 }
 
 .carousel-container {
-  overflow: hidden;
-  max-width: 600px;
+  max-width: 100%;
   margin: 0 auto;
+  overflow: visible;
   position: relative;
+  padding: 0;
 }
 
 .carousel-track {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  gap: 30px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .review-slide {
-  flex: 0 0 100%;
+  min-width: 400px;
+  flex: 0 0 400px;
+  padding: 30px;
   box-sizing: border-box;
-  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  transition: all 0.3s ease;
+  transform: scale(0.9);
+  opacity: 0.6;
 }
 
-.review-slide p {
-  font-style: italic;
-  margin-bottom: 1rem;
+.review-slide.active {
+  transform: scale(1);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .review-slide .stars {
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
 }
 
 .review-slide .stars img {
-  width: 120px;
-  height: auto;
+  height: 30px;
+}
+
+.review-slide p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.review-slide .author {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .review-slide {
+    min-width: 300px;
+    flex: 0 0 300px;
+    padding: 20px;
+  }
+  
+  .review-slide p {
+    font-size: 1rem;
+  }
 }
 
 /* Performance and Scrolling Improvements */

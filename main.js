@@ -31,34 +31,67 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Reviews Carousel
-const track = document.querySelector('.carousel-track');
-const slides = Array.from(track.children);
-const slideWidth = slides[0].getBoundingClientRect().width;
-
-// Clone slides for infinite effect
-slides.forEach(slide => {
-  const clone = slide.cloneNode(true);
-  track.appendChild(clone);
-});
-
-let position = 0;
-const totalSlides = track.children.length;
-
-function moveCarousel() {
-  position++;
-  if (position >= totalSlides) {
-    track.style.transition = 'none';
-    position = 0;
-    track.style.transform = `translateX(0px)`;
-    // Force reflow to reset transition
-    track.offsetHeight; 
-    track.style.transition = 'transform 0.5s ease-in-out';
-    position++;
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.querySelector('.carousel-track');
+  if (!track) return; // Exit if no carousel track found
+  
+  const slides = Array.from(track.children);
+  const slideWidth = slides[0].getBoundingClientRect().width + 30; // Including gap
+  let currentIndex = 0;
+  
+  // Clone slides many times for truly infinite scrolling
+  const totalClones = slides.length * 10;
+  for (let i = 0; i < totalClones; i++) {
+    const clone = slides[i % slides.length].cloneNode(true);
+    track.appendChild(clone);
   }
-  track.style.transform = `translateX(-${position * slideWidth}px)`;
-}
-
-setInterval(moveCarousel, 3000);
+  
+  // Set initial position
+  updatePosition(false);
+  updateActiveSlide();
+  
+  function updateActiveSlide() {
+    const allSlides = Array.from(track.children);
+    allSlides.forEach(slide => slide.classList.remove('active'));
+    
+    // Activate all instances of the current slide
+    const currentSlideIndex = currentIndex % slides.length;
+    allSlides.forEach((slide, index) => {
+      if (index % slides.length === currentSlideIndex) {
+        slide.classList.add('active');
+      }
+    });
+  }
+  
+  function updatePosition(animate = true) {
+    const baseOffset = -(currentIndex * slideWidth);
+    track.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+    track.style.transform = `translateX(calc(50% + ${baseOffset}px))`;
+  }
+  
+  // Auto advance carousel
+  function autoAdvance() {
+    currentIndex++;
+    updatePosition();
+    updateActiveSlide();
+  }
+  
+  let interval = setInterval(autoAdvance, 4000);
+  
+  // Pause on hover
+  track.addEventListener('mouseenter', () => {
+    if (interval) {
+      clearInterval(interval);
+      interval = null;
+    }
+  });
+  
+  track.addEventListener('mouseleave', () => {
+    if (!interval) {
+      interval = setInterval(autoAdvance, 4000);
+    }
+  });
+});
 
 // Image Loading
 document.querySelectorAll('img').forEach(img => {
@@ -134,4 +167,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     lazyImages.forEach(img => lazyImageObserver.observe(img));
   }
+});
+
+// Scroll reveal animation for features
+function revealOnScroll() {
+  const features = document.querySelectorAll('.feature');
+  
+  features.forEach(feature => {
+    const featureTop = feature.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if (featureTop < windowHeight * 0.85) { // Reveal when 85% of the feature is visible
+      feature.classList.add('reveal');
+    }
+  });
+}
+
+// Initial check on page load
+document.addEventListener('DOMContentLoaded', revealOnScroll);
+
+// Check on scroll
+window.addEventListener('scroll', () => {
+  requestAnimationFrame(revealOnScroll);
 }); 
