@@ -827,3 +827,106 @@ footer {
 .floating-logo {
   animation: float 3s ease-in-out infinite;
 }
+
+/* Mobile Menu Animation */
+.hamburger.active div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active div:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Improved mobile navigation */
+@media (max-width: 768px) {
+  nav ul {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  nav ul li {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.3s ease-in-out;
+  }
+
+  nav ul.open li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  nav ul.open li:nth-child(1) { transition-delay: 0.1s; }
+  nav ul.open li:nth-child(2) { transition-delay: 0.2s; }
+  nav ul.open li:nth-child(3) { transition-delay: 0.3s; }
+  nav ul.open li:nth-child(4) { transition-delay: 0.4s; }
+}
+
+/* Performance and Scrolling Improvements */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize animations for devices that prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Better touch handling for mobile */
+@media (hover: none) {
+  .button {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .button:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Loading state for images */
+.logo, .floating-logo {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.logo.loaded, .floating-logo.loaded {
+  opacity: 1;
+}
+
+/* Prevent content shift while loading */
+.hero-content {
+  min-height: 400px;
+}
+
+/* Improved scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+  border: 3px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
