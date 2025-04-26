@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!track) return;
   
   const slides = Array.from(track.children);
-  const slideWidth = slides[0].getBoundingClientRect().width + 30; // Including gap
   let currentIndex = 0;
   
   // Clone slides for infinite scroll
@@ -48,31 +47,52 @@ document.addEventListener('DOMContentLoaded', function() {
     track.prepend(slide.cloneNode(true));
   });
 
+  function getSlideWidth() {
+    // Use different widths for mobile and desktop
+    if (window.innerWidth <= 768) {
+      return window.innerWidth * 0.85 + 20; // 85vw + gap
+    } else if (window.innerWidth <= 480) {
+      return window.innerWidth * 0.9 + 20; // 90vw + gap
+    }
+    return slides[0].getBoundingClientRect().width + 30; // desktop width + gap
+  }
+
   // Initialize position
   updatePosition();
   
   function updatePosition() {
     const allSlides = Array.from(track.children);
     const middleIndex = Math.floor(allSlides.length / 2);
+    const slideWidth = getSlideWidth();
     track.style.transition = 'transform 0.5s ease-in-out';
-    track.style.transform = `translateX(${-middleIndex * slideWidth + (window.innerWidth - slideWidth) / 2}px)`;
+    
+    // Center the current slide
+    const offset = window.innerWidth <= 768 ? 
+      (window.innerWidth - slideWidth + 20) / 2 : // Mobile centering
+      (window.innerWidth - slideWidth) / 2; // Desktop centering
+    
+    track.style.transform = `translateX(${-middleIndex * slideWidth + offset}px)`;
   }
 
   // Auto advance carousel
   function moveCarousel() {
     currentIndex++;
-    const allSlides = Array.from(track.children);
-    const totalWidth = slideWidth * (allSlides.length / 3);
+    const slideWidth = getSlideWidth();
+    
+    // Center the current slide
+    const offset = window.innerWidth <= 768 ? 
+      (window.innerWidth - slideWidth + 20) / 2 : // Mobile centering
+      (window.innerWidth - slideWidth) / 2; // Desktop centering
     
     track.style.transition = 'transform 0.5s ease-in-out';
-    track.style.transform = `translateX(${-currentIndex * slideWidth + (window.innerWidth - slideWidth) / 2}px)`;
+    track.style.transform = `translateX(${-currentIndex * slideWidth + offset}px)`;
 
     // Reset position when reaching the end
     if (currentIndex >= slides.length) {
       setTimeout(() => {
         track.style.transition = 'none';
         currentIndex = 0;
-        track.style.transform = `translateX(${(window.innerWidth - slideWidth) / 2}px)`;
+        track.style.transform = `translateX(${offset}px)`;
       }, 500);
     }
   }
@@ -90,7 +110,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Update position on window resize
-  window.addEventListener('resize', updatePosition);
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updatePosition, 100);
+  });
 });
 
 // Image Loading
