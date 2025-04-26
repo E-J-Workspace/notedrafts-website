@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notedrafts – App</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/Favicon.png">
@@ -15,7 +15,12 @@
         <img src="assets/Notedrafts-Logo.png" alt="Notedrafts Logo" class="logo" />
         <span class="site-title">Notedrafts</span>
       </div>
-      <ul>
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
         <li><a href="#features">Features</a></li>
         <li><a href="#download">Download</a></li>
         <li><a href="#discord">Discord</a></li>
