@@ -21,6 +21,7 @@ body {
   z-index: 0;
   line-height: 1.6;
   color: var(--text-color);
+  padding-top: calc(70px + env(safe-area-inset-top));
 }
 
 body::before {
@@ -40,6 +41,42 @@ body::before {
 }
 
 /* Navigation */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+header.scrolled nav {
+  background-color: #000;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+header.scrolled .site-title,
+header.scrolled .hamburger-line {
+  color: #fff;
+}
+
+header.scrolled .hamburger-line {
+  background-color: #fff;
+}
+
+header.scrolled .nav-links {
+  background-color: #000;
+}
+
+header.scrolled .nav-links a {
+  color: #fff;
+}
+
+header.scrolled .nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 nav {
   max-width: 960px;
   margin: 0 auto;
@@ -50,7 +87,7 @@ nav {
   background-color: #fff;
   border-radius: 18px;
   position: relative;
-  z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .logo-title {
@@ -66,6 +103,7 @@ nav {
 .site-title {
   font-size: 1.6rem;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
 .nav-links {
@@ -197,8 +235,15 @@ nav {
     margin-top: 0;
   }
 
+  header {
+    padding: 10px;
+  }
+
   nav {
-    display: none;
+    position: relative;
+    padding: 16px;
+    margin: 0;
+    overflow: visible;
   }
 
   .hamburger {
@@ -214,45 +259,21 @@ nav {
 
   .nav-links {
     position: absolute;
-    top: -16px;
-    right: -16px;
-    width: calc(100% + 32px);
+    top: 0;
+    left: 0;
+    width: 100%;
     height: auto;
-    min-height: calc(100% + 250px);
     background: #fff;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 5px;
-    padding: 90px 20px 30px;
+    padding: 70px 20px 20px;
     transform: scaleY(0);
     transform-origin: top;
     transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     z-index: 1;
     border-radius: 18px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  }
-
-  .nav-links::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: #fff;
-    border-radius: 18px 18px 0 0;
-  }
-
-  .nav-links::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 30px;
-    background: #fff;
-    border-radius: 0 0 18px 18px;
   }
 
   .nav-links.open {
@@ -278,10 +299,10 @@ nav {
 
   .nav-links a {
     display: block;
-    padding: 12px 16px;
+    padding: 16px;
     width: 100%;
-    text-align: left;
-    font-size: 1.1rem;
+    text-align: center;
+    font-size: 1.2rem;
     border-radius: 12px;
     transition: all 0.3s ease;
     position: relative;
@@ -312,48 +333,67 @@ nav {
 }
 
 @media (max-width: 480px) {
+  header {
+    padding: 8px;
+  }
+
   nav {
     padding: 14px;
   }
 
+  body {
+    padding-top: calc(60px + env(safe-area-inset-top));
+  }
+
   .nav-links {
-    top: -14px;
-    right: -14px;
-    width: calc(100% + 28px);
-    padding: 80px 15px 25px;
+    padding: 65px 15px 15px;
   }
 
   .nav-links a {
-    text-align: left;
-    font-size: 1.1rem;
-    padding: 12px 16px;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 14px;
   }
 }
 
 @media (max-width: 600px) {
   #hero {
-    padding: 40px 20px;
+    padding: 40px 5px;
   }
-
+  
   #hero .hero-content {
+    height: auto;
+    min-height: 380px;
     width: 95%;
-    padding: 32px 24px;
-    min-height: 500px;
+    padding: 30px 20px;
   }
-
+  
   #hero .floating-logo {
     width: 120px;
-    margin-bottom: 24px;
+    margin-top: 20px;
+    margin-bottom: 15px;
   }
-
+  
   #hero h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
+    font-size: 1.4rem;
   }
-
+  
   #hero p {
     font-size: 1.1rem;
-    max-width: 300px;
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #hero .subtext {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    max-width: 95vw;
+  }
+
+  #hero .button {
+    margin-top: 20px;
   }
 
   #hero .button {
@@ -607,36 +647,46 @@ nav {
 
 @media (max-width: 600px) {
   #hero {
-    padding: 40px 15px;
+    padding: 40px 5px;
   }
-
+  
   #hero .hero-content {
-    width: 100%;
-    padding: 32px 20px;
-    min-height: auto;
-    border-width: 2px;
+    height: auto;
+    min-height: 380px;
+    width: 95%;
+    padding: 30px 20px;
   }
-
+  
   #hero .floating-logo {
-    width: 110px;
-    margin-bottom: 24px;
+    width: 120px;
+    margin-top: 20px;
+    margin-bottom: 15px;
   }
-
+  
   #hero h2 {
-    font-size: 1.8rem;
-    margin-bottom: 16px;
+    font-size: 1.4rem;
   }
-
+  
   #hero p {
     font-size: 1.1rem;
-    max-width: 100%;
-    padding: 0 10px;
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #hero .subtext {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    max-width: 95vw;
   }
 
   #hero .button {
-    width: 100%;
-    max-width: 280px;
-    padding: 14px 20px;
+    margin-top: 20px;
+  }
+
+  #hero .button {
+    padding: 14px 32px;
     font-size: 1.1rem;
     margin-top: 32px;
   }
@@ -644,7 +694,6 @@ nav {
   #hero .subtext {
     font-size: 0.85rem;
     margin-top: 12px;
-    padding: 0 15px;
   }
 
   #features {

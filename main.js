@@ -3,12 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
   const links = document.querySelectorAll('.nav-links a');
+  const body = document.body;
 
   // Toggle menu
-  hamburger.addEventListener('click', () => {
+  hamburger?.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navLinks.classList.toggle('open');
-    document.body.classList.toggle('menu-open');
+    body.classList.toggle('menu-open');
   });
 
   // Close menu when clicking a link
@@ -189,4 +190,16 @@ document.addEventListener('DOMContentLoaded', revealOnScroll);
 // Check on scroll
 window.addEventListener('scroll', () => {
   requestAnimationFrame(revealOnScroll);
+});
+
+// Scroll effect for header
+const header = document.querySelector('header');
+const scrollThreshold = 50; // Pixels to scroll before changing header style
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > scrollThreshold) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
 }); 
