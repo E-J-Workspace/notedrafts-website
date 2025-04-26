@@ -171,22 +171,62 @@ nav {
   }
 
   .nav-links {
-    display: none;
-    position: fixed;
-    top: 80px;
-    left: 0;
+    position: absolute;
+    top: calc(100% - 1px);
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 20px;
+    background: #fff;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    transform-origin: top center;
+    transform: scaleY(0);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    pointer-events: none;
+    border-radius: 0 0 18px 18px;
+    overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: none;
   }
 
   .nav-links.open {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links li {
+    margin: 0;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+
+  .nav-links.open li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+  .nav-links li:nth-child(2) { transition-delay: 0.15s; }
+  .nav-links li:nth-child(3) { transition-delay: 0.2s; }
+
+  .nav-links a {
+    padding: 16px 24px;
+    width: 100%;
+    display: block;
+    text-align: left;
+    border-radius: 0;
+    background: none;
+  }
+
+  .nav-links a:hover {
+    background-color: rgba(59, 119, 233, 0.1);
+  }
+
+  .hamburger div {
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
   }
 
   .hamburger.active div:nth-child(1) {
@@ -195,10 +235,31 @@ nav {
 
   .hamburger.active div:nth-child(2) {
     opacity: 0;
+    transform: translateX(-10px);
   }
 
   .hamburger.active div:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    padding: 16px;
+    margin: 10px;
+  }
+
+  .nav-links {
+    width: 220px;
+  }
+
+  .nav-links a {
+    padding: 14px 20px;
+    font-size: 1rem;
   }
 }
 
@@ -761,22 +822,75 @@ footer a img:hover {
   }
 
   .nav-links {
-    display: none;
-    position: fixed;
-    top: 80px;
-    left: 0;
+    position: absolute;
+    top: calc(100% - 1px);
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 20px;
+    background: #fff;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    transform-origin: top center;
+    transform: scaleY(0);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    pointer-events: none;
+    border-radius: 0 0 18px 18px;
+    overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: none;
   }
 
   .nav-links.open {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links li {
+    margin: 0;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+
+  .nav-links.open li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+  .nav-links li:nth-child(2) { transition-delay: 0.15s; }
+  .nav-links li:nth-child(3) { transition-delay: 0.2s; }
+
+  .nav-links a {
+    padding: 16px 24px;
+    width: 100%;
+    display: block;
+    text-align: left;
+    border-radius: 0;
+    background: none;
+  }
+
+  .nav-links a:hover {
+    background-color: rgba(59, 119, 233, 0.1);
+  }
+
+  .hamburger div {
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+
+  .hamburger.active div:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .hamburger.active div:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  .hamburger.active div:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
   }
 
   body.menu-open {
