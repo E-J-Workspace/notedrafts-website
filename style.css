@@ -457,23 +457,62 @@ nav ul li a {
     border-radius: 10px;
 }
 
-/* Hamburger menu styles */
+/* Mobile Menu Styles */
 .hamburger {
   display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 28px;
-  height: 24px;
   cursor: pointer;
-  z-index: 1100;
+  padding: 10px;
+  z-index: 1000;
 }
 
 .hamburger div {
-  width: 28px;
+  width: 25px;
   height: 3px;
-  background-color: #222;
-  border-radius: 2px;
+  background-color: #333;
+  margin: 5px 0;
   transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .hamburger.active div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
 }
 
 /* Mobile Optimierung */

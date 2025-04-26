@@ -15,11 +15,11 @@
         <img src="assets/Notedrafts-Logo.png" alt="Notedrafts Logo" class="logo" />
         <span class="site-title">Notedrafts</span>
       </div>
-      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <ul class="nav-links">
         <li><a href="#features">Features</a></li>
         <li><a href="#download">Download</a></li>
@@ -118,32 +118,35 @@
 
   <!-- JavaScript for Mobile Menu -->
   <script>
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('nav ul');
-    const links = document.querySelectorAll('nav ul li a');
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      const links = document.querySelectorAll('.nav-links a');
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLinks.classList.toggle('open');
-      document.body.classList.toggle('menu-open');
-    });
-
-    // Close menu when clicking a link
-    links.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('open');
-        document.body.classList.remove('menu-open');
+      // Toggle menu
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('open');
+        document.body.classList.toggle('menu-open');
       });
-    });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('nav') && navLinks.classList.contains('open')) {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('open');
-        document.body.classList.remove('menu-open');
-      }
+      // Close menu when clicking a link
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('open');
+          document.body.classList.remove('menu-open');
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('nav') && navLinks.classList.contains('open')) {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('open');
+          document.body.classList.remove('menu-open');
+        }
+      });
     });
   </script>
 
