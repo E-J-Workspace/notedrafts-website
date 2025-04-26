@@ -144,7 +144,7 @@ nav {
   animation: float 4s ease-in-out infinite;
   box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7);
   filter: drop-shadow(0 0 8px white);
-  border-radius: 16px;
+  border-radius: 38px;
   transition: box-shadow 0.3s ease;
   position: relative;
   z-index: 1;
